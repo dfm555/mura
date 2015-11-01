@@ -27,47 +27,70 @@
                 <h3>Movimiento Rectilinio Uniformemente Acelerado <small>MURA</small></h3>
             </div>
         </div>
-        <div class="col-md-5 col-md-push-7">
-            <h4>Datos</h4>
-            <form>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="number" class="form-control"  placeholder="Velocidad inicial">
-                        <div class="input-group-addon">m/s</div>
-                    </div>
+        <div class="col-md-3">
+            <h3 class="panel-title">Datos</h3>
+            <hr/>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" class="form-control"  placeholder="Velocidad inicial">
+                    <div class="input-group-addon">m/s</div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="number" class="form-control" placeholder="Velocidad final">
-                        <div class="input-group-addon">m/s</div>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="Velocidad final">
+                    <div class="input-group-addon">m/s</div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="number" class="form-control"  placeholder="Aceleración">
-                        <div class="input-group-addon">m/s<sup>2</sup></div>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" class="form-control"  placeholder="Aceleración">
+                    <div class="input-group-addon">m/s<sup>2</sup></div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="number" class="form-control" placeholder="Tiempo">
-                        <div class="input-group-addon">s</div>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="Tiempo">
+                    <div class="input-group-addon">s</div>
                 </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="number" class="form-control" placeholder="Distancia">
-                        <div class="input-group-addon">m</div>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="Distancia">
+                    <div class="input-group-addon">m</div>
                 </div>
-                <div class="form-group">
-
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-
+            </div>
         </div>
-        <div class="col-md-7 col-md-pull-5">Grafica</div>
+        <div class="col-md-3">
+            <h3 class="panel-title">Información Adicional</h3>
+            <hr/>
+            <p>Pregunta</p>
+            <select multiple class="form-control">
+                <option value="vi">Velocidad Inicial</option>
+                <option value="fg">Velocidad Final</option>
+                <option value="a">Acelaración</option>
+                <option value="t">Tiempo</option>
+                <option value="d">Distancia</option>
+            </select>
+            <br/>
+            <select class="form-control">
+                <option value="">Seleccione una Particula</option>
+                <option value="tren">Tren</option>
+                <option value="carro">Carro</option>
+                <option value="avion">Avión</option>
+            </select>
+            <br/>
+            <button type="submit" class="btn btn-success">Calcular</button>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Dibujo</h3>
+                </div>
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
