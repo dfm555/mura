@@ -10,18 +10,19 @@ function calculateController() {
 
 	var _this = this, gbVi, gbVf, gbA, gbT, gbD;
 	_this.calculate = function(vi, vf, a, t, d, pregunta) {
-		gbVi = vi;
-		gbVf = vf;
-		gbA = a;
-		gbT = t;
-		gbD = d;
+
+		gbVi = (vi == null)? undefined: vi;
+		gbVf = (vf == null)? undefined: vf;
+		gbA = (a == null)? undefined: a;
+		gbT = (t == null)? undefined: t;
+		gbD = (d == null)? undefined: d;
 
 		switch(pregunta){
 			case 'vi':
-				console.log(velocidadInicial(vf, a, t));
+				velocidadInicial(vf, a, t);
 				break;
 			case 'vf':
-				console.log(velocidadFinal());
+				_this.mostrar = velocidadFinal();
 				break;
 			case 'a':
 				aceleracion(vi, vf, t)
@@ -40,40 +41,53 @@ function calculateController() {
 		// Vi = (Δx - a.t²/2)/t
 		//Vi = Vf - a.t
 		//vi = raiz(vf al cuadrado - 2.a.Δx)
-		var frmVf = (vf === undefined) ? velocidadFinal(gbVi, a, t): vf;
-		var frmA = (a === undefined) ? aceleracion(gbVi, vf, t): a;
-		var frmt = (t === undefined) ? tiempo(vf, gbVi, a): t;
-		return frmVf - (frmA * frmt);
-
 	}
 
 	function velocidadFinal(){
+		_this.formula = [];
+		var vf = gbVi + (gbA * gbT);
+		_this.formula.push({
+			definicion: "vf = vi + a * t",
+			despeje: ""+gbVi+" + "+gbA+" * "+gbT+"",
+			resultado: vf
 
-		var vf = gbVi + (gbA* gbT);
+		});
+
 		if(isNaN(vf)){
+			_this.formula = [];
 			vf = (2 * gbD - gbVi*gbT)/gbT;
-			console.log("(2 * gbD - gbVi*gbT)/gbT;")
-			if(isNaN(vf)){
-				vf = (2 * gbD + gbA * Math.pow( gbT, 2 ))/ 2*gbT;
-				if(isNaN(vf)){
-					vf = Math.sqrt(Math.pow(gbVi, 2)+ 2 * gbA * gbD )
-				}
-				if (isNaN(vf)){
-					vf = false;
-				}
-			}
-
+			_this.formula.push({
+				definicion: "vf = (2 * Δx - vi * t)/t",
+				despeje: "(2 * "+gbD+" - "+gbVi+" * "+gbT+") / "+gbT+"",
+				resultado: vf
+			});
 		}
-		return vf;
 
-		//Vf = Vi + a.t
-		//Vf = (2.Δx - Vi.t)/t
-		//vf = (2.Δx + a.t²)/2t
-		//vi = raiz(vi al cuadrado + 2.a.Δx)
-		//var frmVi = (vi === undefined) ? velocidadInicial(gbVf, a, t): vi;
-		//var frmA = (a === undefined) ? aceleracion(vi, gbVf, t): a;
-		//var frmt = (t === undefined) ? tiempo(vi, gbVf, a): t;
-		//return frmVi + (frmA * frmt);
+		if(isNaN(vf)){
+			_this.formula = [];
+			vf = (2 * gbD + gbA * Math.pow( gbT, 2 ))/ 2*gbT;
+			_this.formula.push({
+				definicion: "vf = ( 2 * Δx + a * t² ) / 2t",
+				despeje: "( 2 * "+gbD+" + "+gbA+" * ("+gbT+")² ) / 2 * "+gbT+"",
+				resultado: vf
+			});
+		}
+
+		if(isNaN(vf)){
+			_this.formula = []
+			vf = Math.sqrt(Math.pow(gbVi, 2)+ 2 * gbA * gbD )
+			_this.formula.push({
+				definicion: "vf = √ (Vi)² + 2 * a * Δx",
+				despeje: "√ ("+gbVi+")² + 2 * "+gbA+" * "+gbD+"",
+				resultado: vf
+			});
+		}
+
+		if (isNaN(vf)){
+			vf = false;
+		}
+
+		return vf;
 
 	}
 
