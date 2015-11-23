@@ -19,28 +19,71 @@ function calculateController() {
 
 		switch(pregunta){
 			case 'vi':
-				velocidadInicial(vf, a, t);
+				_this.mostrar = velocidadInicial();
 				break;
 			case 'vf':
 				_this.mostrar = velocidadFinal();
 				break;
 			case 'a':
-				aceleracion(vi, vf, t)
+				_this.mostrar = aceleracion();
 				break;
 			case 't':
-				tiempo(vf, vi, a)
+				_this.mostrar = tiempo()
 				break;
 			case 'd':
-				distancia(vi, t, a);
+				_this.mostrar = distancia();
 				break;
 		}
 	}
 
-	function velocidadInicial( vf, a, t ){
-		//Vi = 2.Δx/t - Vf
-		// Vi = (Δx - a.t²/2)/t
+	function velocidadInicial(){
+
 		//Vi = Vf - a.t
+		_this.formula = [];
+		var vi = gbVf - (gbA * gbT);
+		_this.formula.push({
+			definicion: "vi = vf - a * t",
+			despeje: ""+gbVf+" - "+gbA+" * "+gbT+"",
+			resultado: vi
+
+		});
+		// Vi = (Δx - a.t²/2)/t
+		if(isNaN(vi)){
+			_this.formula = [];
+			vi = (gbD - (gbA * Math.pow(gbT,2))/2)/gbT;
+			_this.formula.push({
+				definicion: "vi = ( Δx - ( a * (t)² ) / 2  ) / t",
+				despeje: "( "+gbD+" - ("+gbA+" * ("+gbT+")² ) / 2 ) / "+gbT+"",
+				resultado: vi
+			});
+		}
+		//Vi = 2.Δx/t - Vf
+		if(isNaN(vi)){
+			_this.formula = [];
+			vi = ( (2 * gbD) / gbT ) - gbVf;
+			_this.formula.push({
+				definicion: "vi = ( ( 2 * Δx ) / t ) - vf )",
+				despeje: "( ( 2 * "+gbD+" ) / "+gbT+" ) - "+gbVf+"",
+				resultado: vi
+			});
+		}
 		//vi = raiz(vf al cuadrado - 2.a.Δx)
+		if(isNaN(vi)){
+			_this.formula = []
+			vi = Math.sqrt(Math.pow(gbVf, 2) - 2 * gbA * gbD )
+			_this.formula.push({
+				definicion: "vi = √ (Vf)² - 2 * a * Δx",
+				despeje: "√ ("+gbVf+")² - 2 * "+gbA+" * "+gbD+"",
+				resultado: vi
+			});
+		}
+
+		if (isNaN(vi)){
+			vi = false;
+		}
+
+		return vi;
+
 	}
 
 	function velocidadFinal(){
@@ -91,10 +134,32 @@ function calculateController() {
 
 	}
 
-	function tiempo(vf, vi, a){
+	function tiempo(){
 		// t = (Vf - Vi)/a
+		_this.formula = [];
+		var t = ( gbVf - gbVi ) / gbA;
+		_this.formula.push({
+			definicion: "t = ( Vf - Vi ) / a",
+			despeje: "("+gbVf+" - "+gbVi+" ) / "+gbA+"",
+			resultado: t
+
+		});
 		//t = 2.Δx/(Vf + Vi)
-		console.log('t');
+		if(isNaN(t)){
+			_this.formula = [];
+			t = (2 * gbD) / (gbVf + gbVi);
+			_this.formula.push({
+				definicion: "t = ( 2 * Δx ) / ( Vf + Vi )",
+				despeje: "(2 * "+gbD+") / ( "+gbVf+" + "+gbVi+" )",
+				resultado: t
+			});
+		}
+
+		if (isNaN(t)){
+			t = false;
+		}
+
+		return t;
 
 	}
 
@@ -103,7 +168,51 @@ function calculateController() {
 		//Δx = (Vf² - Vi²)/2.a
 		//Δx = t.(Vf + Vi)/2
 		//Δx = Vf.t - a.t²/2
-		console.log('d');
+		//Vi = Vf - a.t
+		_this.formula = [];
+		var vi = gbVf - (gbA * gbT);
+		_this.formula.push({
+			definicion: "vi = vf - a * t",
+			despeje: ""+gbVf+" - "+gbA+" * "+gbT+"",
+			resultado: vi
+
+		});
+		// Vi = (Δx - a.t²/2)/t
+		if(isNaN(vi)){
+			_this.formula = [];
+			vi = (gbD - (gbA * Math.pow(gbT,2))/2)/gbT;
+			_this.formula.push({
+				definicion: "vi = ( Δx - ( a * (t)² ) / 2  ) / t",
+				despeje: "( "+gbD+" - ("+gbA+" * ("+gbT+")² ) / 2 ) / "+gbT+"",
+				resultado: vi
+			});
+		}
+		//Vi = 2.Δx/t - Vf
+		if(isNaN(vi)){
+			_this.formula = [];
+			vi = ( (2 * gbD) / gbT ) - gbVf;
+			_this.formula.push({
+				definicion: "vi = ( ( 2 * Δx ) / t ) - vf )",
+				despeje: "( ( 2 * "+gbD+" ) / "+gbT+" ) - "+gbVf+"",
+				resultado: vi
+			});
+		}
+		//vi = raiz(vf al cuadrado - 2.a.Δx)
+		if(isNaN(vi)){
+			_this.formula = []
+			vi = Math.sqrt(Math.pow(gbVf, 2) - 2 * gbA * gbD )
+			_this.formula.push({
+				definicion: "vi = √ (Vf)² - 2 * a * Δx",
+				despeje: "√ ("+gbVf+")² - 2 * "+gbA+" * "+gbD+"",
+				resultado: vi
+			});
+		}
+
+		if (isNaN(vi)){
+			vi = false;
+		}
+
+		return vi;
 
 	}
 
