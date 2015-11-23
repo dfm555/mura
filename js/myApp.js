@@ -134,10 +134,32 @@ function calculateController() {
 
 	}
 
-	function tiempo(vf, vi, a){
+	function tiempo(){
 		// t = (Vf - Vi)/a
+		_this.formula = [];
+		var t = ( gbVf - gbVi ) / gbA;
+		_this.formula.push({
+			definicion: "t = ( Vf - Vi ) / a",
+			despeje: "("+gbVf+" - "+gbVi+" ) / "+gbA+"",
+			resultado: t
+
+		});
 		//t = 2.Δx/(Vf + Vi)
-		console.log('t');
+		if(isNaN(t)){
+			_this.formula = [];
+			t = (2 * gbD) / (gbVf + gbVi);
+			_this.formula.push({
+				definicion: "t = ( 2 * Δx ) / ( Vf + Vi )",
+				despeje: "(2 * "+gbD+") / ( "+gbVf+" + "+gbVi+" )",
+				resultado: t
+			});
+		}
+
+		if (isNaN(t)){
+			t = false;
+		}
+
+		return t;
 
 	}
 
