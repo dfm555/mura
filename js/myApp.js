@@ -164,55 +164,52 @@ function calculateController() {
 	}
 
 	function distancia(vi, t, a){
+
 		//Δx = Vi.t + a.t²/2
-		//Δx = (Vf² - Vi²)/2.a
-		//Δx = t.(Vf + Vi)/2
-		//Δx = Vf.t - a.t²/2
-		//Vi = Vf - a.t
 		_this.formula = [];
-		var vi = gbVf - (gbA * gbT);
+		var d = gbVi * gbT + ( gbA * Math.pow(gbT, 2) ) / 2;
 		_this.formula.push({
-			definicion: "vi = vf - a * t",
-			despeje: ""+gbVf+" - "+gbA+" * "+gbT+"",
-			resultado: vi
+			definicion: "d = Vi * t + ( a * t²) / 2",
+			despeje: ""+gbVi+" * "+gbT+" + ( "+gbA+" * ("+gbT+")² ) / 2",
+			resultado: d
 
 		});
-		// Vi = (Δx - a.t²/2)/t
-		if(isNaN(vi)){
+		//Δx = (Vf² - Vi²)/2.a
+		if(isNaN(d)){
 			_this.formula = [];
-			vi = (gbD - (gbA * Math.pow(gbT,2))/2)/gbT;
+			d = ( Math.pow( gbVf, 2 ) - Math.pow( gbVi,2 ) )/ 2 * gbA;
 			_this.formula.push({
-				definicion: "vi = ( Δx - ( a * (t)² ) / 2  ) / t",
-				despeje: "( "+gbD+" - ("+gbA+" * ("+gbT+")² ) / 2 ) / "+gbT+"",
-				resultado: vi
+				definicion: "d = ( (vf)² - (vi)² ) / 2 * a  ",
+				despeje: "( ("+gbVf+")² - ("+gbT+")² ) / 2 * "+gbA+" )",
+				resultado: d
 			});
 		}
-		//Vi = 2.Δx/t - Vf
-		if(isNaN(vi)){
+		//Δx = t.(Vf + Vi)/2
+		if(isNaN(d)){
 			_this.formula = [];
-			vi = ( (2 * gbD) / gbT ) - gbVf;
+			d = ( gbT * (gbVf + gbVi) ) / 2 ;
 			_this.formula.push({
-				definicion: "vi = ( ( 2 * Δx ) / t ) - vf )",
-				despeje: "( ( 2 * "+gbD+" ) / "+gbT+" ) - "+gbVf+"",
-				resultado: vi
+				definicion: "d = ( t * ( Vf + Vi ) ) / 2",
+				despeje: "(  "+gbT+" * ( "+gbVf+" + "+gbVi+" ) / 2 )",
+				resultado: d
 			});
 		}
-		//vi = raiz(vf al cuadrado - 2.a.Δx)
-		if(isNaN(vi)){
+		//Δx = Vf.t - a.t²/2
+		if(isNaN(d)){
 			_this.formula = []
-			vi = Math.sqrt(Math.pow(gbVf, 2) - 2 * gbA * gbD )
+			d = ( ( gbVf * gbT ) - ( gbA * Math.pow( gbT,2 ) ) ) / 2
 			_this.formula.push({
-				definicion: "vi = √ (Vf)² - 2 * a * Δx",
-				despeje: "√ ("+gbVf+")² - 2 * "+gbA+" * "+gbD+"",
-				resultado: vi
+				definicion: "d = ( Vf * t - a * t² ) / 2",
+				despeje: "( ( "+gbVf+" * "+gbT+" )  - "+gbA+" * ("+gbT+")² ) / 2",
+				resultado: d
 			});
 		}
 
-		if (isNaN(vi)){
-			vi = false;
+		if (isNaN(d)){
+			d = false;
 		}
 
-		return vi;
+		return d;
 
 	}
 
