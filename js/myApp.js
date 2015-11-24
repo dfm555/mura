@@ -180,7 +180,7 @@ function calculateController() {
 			d = ( Math.pow( gbVf, 2 ) - Math.pow( gbVi,2 ) )/ 2 * gbA;
 			_this.formula.push({
 				definicion: "d = ( (vf)² - (vi)² ) / 2 * a  ",
-				despeje: "( ("+gbVf+")² - ("+gbT+")² ) / 2 * "+gbA+" )",
+				despeje: "( ("+gbVf+")² - ("+gbVi+")² ) / 2 * "+gbA+" )",
 				resultado: d
 			});
 		}
