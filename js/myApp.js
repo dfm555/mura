@@ -19,19 +19,19 @@ function calculateController() {
 
 		switch(pregunta){
 			case 'vi':
-				_this.mostrar = velocidadInicial();
+				_this.mostrar = ( velocidadInicial() ) == 0 ? true : velocidadInicial();
 				break;
 			case 'vf':
-				_this.mostrar = velocidadFinal();
+				_this.mostrar = ( velocidadFinal()) == 0 ? true : velocidadFinal();
 				break;
 			case 'a':
-				_this.mostrar = aceleracion();
+				_this.mostrar =( aceleracion()) == 0 ? true : aceleracion();
 				break;
 			case 't':
-				_this.mostrar = tiempo()
+				_this.mostrar =( tiempo()) == 0 ? true : tiempo()
 				break;
 			case 'd':
-				_this.mostrar = distancia();
+				_this.mostrar = (distancia()) == 0 ? true : distancia();
 				break;
 		}
 	}
@@ -213,7 +213,7 @@ function calculateController() {
 
 	}
 
-	function aceleracion (vi, vf, t){
+	function aceleracion (){
 
 		// a = (Vf - Vi)/t
 		_this.formula = [];

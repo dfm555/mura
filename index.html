@@ -74,6 +74,7 @@
                 <option value="d">Distancia</option>
             </select>
             <br/>
+            <p>Particula</p>
             <select class="form-control" ng-model="particula">
                 <option value="">Seleccione una Particula</option>
                 <option value="tren">Tren</option>
@@ -89,8 +90,35 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Dibujo</h3>
                 </div>
-                <div class="panel-body">
-                    <img class="img-responsive" ng-show="calculate.mostrar" ng-src="img/{{ particula }}.gif" alt="{{ particula }}">
+                <div class="panel-body" ng-show="calculate.mostrar">
+                    <p ng-show="( a != null && pregunta != 'a') ? true : false " class="text-center">
+                      a = {{ a }} m/s<sup>2</sup>
+                    </p>
+                    <p ng-if="pregunta == 'a'" class="text-center">
+                        a = ???
+                    </p>
+                    <img class="img-responsive"  ng-src="img/{{ particula }}.gif" alt="{{ particula }}">
+
+                    <div class="datos-graficos">
+                        <div class="pull-left">
+                            <span class="ti">ti = 0 s</span><br>
+                            <span class="vi" ng-show="( vi != null && pregunta != 'vi') ? true : false ">vi = {{ vi }} m/s</span>
+                            <span class="vi" ng-if="pregunta == 'vi'">vi = ???</span>
+                        </div>
+                        <div class="pull-right">
+                            <span class="tf" ng-show="( t != null && pregunta != 't') ? true : false ">tf = {{ t }} s </span>
+                            <span class="tf" ng-if="pregunta == 't'">tf = ??? </span><br>
+                            <span class="vf" ng-show="( vf != null && pregunta != 'vf') ? true : false ">vf =  {{ vf }} m/2</span>
+                            <span class="vf" ng-if="pregunta == 'vf'">vf =  ???</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="text-center">
+                            <hr>
+                            <span ng-show="( d != null && pregunta != 'd') ? true : false " class="d">d = {{ d }} m</span>
+                            <span ng-if="pregunta == 'd'" class="d">d = ???</span>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div class="panel panel-success" ng-show="calculate.mostrar">
