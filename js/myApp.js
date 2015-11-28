@@ -20,18 +20,23 @@ function calculateController() {
 		switch(pregunta){
 			case 'vi':
 				_this.mostrar = ( velocidadInicial() ) == 0 ? true : velocidadInicial();
+				_this.unidades = 'm/s';
 				break;
 			case 'vf':
 				_this.mostrar = ( velocidadFinal()) == 0 ? true : velocidadFinal();
+				_this.unidades = 'm/s';
 				break;
 			case 'a':
 				_this.mostrar =( aceleracion()) == 0 ? true : aceleracion();
+				_this.unidades = 'm/s²';
 				break;
 			case 't':
-				_this.mostrar =( tiempo()) == 0 ? true : tiempo()
+				_this.mostrar =( tiempo()) == 0 ? true : tiempo();
+				_this.unidades = 's';
 				break;
 			case 'd':
 				_this.mostrar = (distancia()) == 0 ? true : distancia();
+				_this.unidades = 'm';
 				break;
 		}
 	}
@@ -151,7 +156,7 @@ function calculateController() {
 			_this.formula.push({
 				definicion: "t = ( 2 * Δx ) / ( Vf + Vi )",
 				despeje: "(2 * "+gbD+") / ( "+gbVf+" + "+gbVi+" )",
-				resultado: t
+				resultado: t,
 			});
 		}
 
