@@ -27,7 +27,7 @@
                 <h3>Movimiento Rectilinio Uniformemente Acelerado <small>MURA</small></h3>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             <h3 class="panel-title">Datos</h3>
             <hr/>
             <div class="form-group">
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             <h3 class="panel-title">Información Adicional</h3>
             <hr/>
             <p>Pregunta</p>
@@ -74,31 +74,30 @@
                 <option value="d">Distancia</option>
             </select>
             <br/>
-            <!--<p>Particula</p>-->
-            <!--<select class="form-control" ng-model="particula">-->
-                <!--<option value="">Seleccione una Particula</option>-->
-                <!--<option value="tren">Tren</option>-->
-                <!--<option value="carro">Carro</option>-->
-                <!--<option value="avion">Avión</option>-->
-            <!--</select>-->
-            <!--<br/>-->
+            <p>Particula</p>
+            <select class="form-control" ng-model="particula">
+                <option value="">Seleccione una Particula</option>
+                <option value="tren">Tren</option>
+                <option value="carro">Carro</option>
+                <option value="avion">Avión</option>
+            </select>
+            <br/>
             <button type="button" ng-click="calculate.calculate(vi,vf,a,t,d, pregunta)" class="btn btn-success">Calcular</button>
-            <!--<hr>-->
-        </div>
-        <div class="col-md-12">
             <hr>
-            <!--<div class="panel panel-default">-->
-                <!--<div class="panel-heading">-->
-                    <!--<h3 class="panel-title">Dibujo</h3>-->
-                <!--</div>-->
-                <!--<div class="panel-body" ng-show="calculate.mostrar">-->
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Dibujo</h3>
+                </div>
+                <div class="panel-body" ng-show="calculate.mostrar">
                     <!--<p ng-show="( a != null && pregunta != 'a') ? true : false " class="text-center">-->
                       <!--a = {{ a }} m/s<sup>2</sup>-->
                     <!--</p>-->
                     <!--<p ng-if="pregunta == 'a'" class="text-center">-->
                         <!--a = ???-->
                     <!--</p>-->
-                    <!--<img class="img-responsive"  ng-src="img/{{ particula }}.gif" alt="{{ particula }}">-->
+                    <img class="img-responsive"  ng-src="img/{{ particula }}.png" alt="{{ particula }}">
 
                     <!--<div class="datos-graficos">-->
                         <!--<div class="pull-left">-->
@@ -120,8 +119,8 @@
                         <!--</div>-->
 
                     <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                </div>
+            </div>
             <div class="panel panel-success" ng-show="calculate.mostrar">
                 <div class="panel-heading">
                     <h3 class="panel-title text-center">Desarrollo</h3>
